@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (4.9.1)
+  - SwiftyJSON (4.3.0)
+  - Swirepay_IOS_SDK (0.1.0):
+    - Alamofire (~> 4.0)
+    - SwiftyJSON (~> 4.0)
+
+DEPENDENCIES:
+  - Swirepay_IOS_SDK (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SwiftyJSON
+
+EXTERNAL SOURCES:
+  Swirepay_IOS_SDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  Swirepay_IOS_SDK: f84a5807b4eec785b262f0d7afa20e1b22140060
+
+PODFILE CHECKSUM: fa4971dab27812b87524a8eb9166baa7c60d8608
+
+COCOAPODS: 1.10.1

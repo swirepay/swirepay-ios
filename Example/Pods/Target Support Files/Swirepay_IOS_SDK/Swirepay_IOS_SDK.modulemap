@@ -1,0 +1,6 @@
+framework module Swirepay_IOS_SDK {
+  umbrella header "Swirepay_IOS_SDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

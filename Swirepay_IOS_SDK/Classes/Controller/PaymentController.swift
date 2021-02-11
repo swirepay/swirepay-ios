@@ -14,9 +14,9 @@ class PaymentController: UIViewController {
     
     // MARK: - Variable declaration
     
-    private weak var paymentUrl:String!
+    private var paymentUrl:String!
     
-    public weak var paymentlinkData = [String:Any]()
+    public  var paymentlinkData = [String:Any]()
     
     // MARK: - Payment status callback
     
@@ -30,7 +30,19 @@ class PaymentController: UIViewController {
         // MARK: - Creating Payment view using webview
 
         let paymentView = WKWebView()
+        
         self.view = paymentView
+        
+        NSLayoutConstraint.activate([
+            paymentView.topAnchor
+                        .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            paymentView.leftAnchor
+                        .constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
+            paymentView.bottomAnchor
+                        .constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            paymentView.rightAnchor
+                        .constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor)
+                ])
         
         // MARK: - parsing payment info
         

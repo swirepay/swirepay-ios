@@ -115,7 +115,7 @@ class ViewController: UIViewController, SwirePaymentListener {
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - SwirePaymentListener 
+    // MARK: - SwirePaymentListener
 
     func didFinishPayment(responseData: [String:Any]) {
         print("didFinishPayment",responseData)

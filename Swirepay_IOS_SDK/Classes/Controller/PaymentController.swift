@@ -89,7 +89,7 @@ extension PaymentController:WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        // print("decidePolicyFor",navigationAction.request.url)
+         print("decidePolicyFor",navigationAction.request.url)
         
         if navigationAction.request.url != nil {
             if let urlStr = navigationAction.request.url?.absoluteString{

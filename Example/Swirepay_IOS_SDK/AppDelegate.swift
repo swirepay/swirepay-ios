@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        SwirepaySDK.shared.initSDK(publishKey:"pk_test_li2QPfjrieB50vljPsuD1icPSu85eeyn")
+        let api_key = "sk_test_LTPd3y8CZG8sRrd8vji85nfzpP4dWemk" // pk_test_li2QPfjrieB50vljPsuD1icPSu85eeyn
+        SwirepaySDK.shared.initSDK(publishKey:api_key)
         
         return true
     }

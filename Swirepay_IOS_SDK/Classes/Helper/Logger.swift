@@ -23,4 +23,8 @@ public class Logger {
             print("ERROR :: => ",message)
         #endif
     }
+    
+    public func warning(message:Any){
+        print("ERROR :: => ",message)
+    }
 }

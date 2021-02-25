@@ -21,6 +21,21 @@ public class ApiManager {
     private init(){}
     
     
+    private func getErrorMessage(code:Int) -> String {
+        Logger.shared.error(message: "getErrorMessage")
+        Logger.shared.error(message: code)
+
+        switch code {
+        case 400:
+            return "ValidationFailed"
+        case 401:
+            return "UnAuthorized Api Key"
+        default:
+            return "ValidationFailed"
+        }
+    }
+    
+    
     // MARK: - Post request to server and return the api response by using completion handler
 
     public func doPostRequest(requestUrl:String,params:[String:Any],completion: @escaping (Bool,JSON,String) -> Void){
@@ -28,17 +43,20 @@ public class ApiManager {
         Logger.shared.info(message:requestUrl)
         Logger.shared.info(message: params)
     
-        Alamofire.request(requestUrl, method: .post, parameters: params,encoding: JSONEncoding.default, headers: [AUTHORISATION_KEY:SwirepaySDK.shared.publishableKey]).responseJSON {
+        Alamofire.request(requestUrl, method: .post, parameters: params,encoding: JSONEncoding.default, headers: [AUTHORISATION_KEY:SwirepaySDK.shared.publishableKey]).validate(statusCode: 200..<300).responseJSON {
         response in
+            
             switch response.result {
             case .success:
                 let json = JSON(response.result.value!)
+                Logger.shared.info(message:"POST RESPONSE ")
                 Logger.shared.info(message:json)
                 completion(true,json,"")
                 break
             case .failure:
+                let errorCode = response.response?.statusCode
                 Logger.shared.error(message: response.error)
-                completion(false,[:],response.error!.localizedDescription)
+                completion(false,[:],self.getErrorMessage(code: errorCode!))
                 break
             }
             
@@ -52,7 +70,7 @@ public class ApiManager {
         
         Logger.shared.info(message:requestUrl)
         
-        Alamofire.request(requestUrl, method: .get, parameters: nil,encoding: JSONEncoding.default, headers: ["x-api-key":SwirepaySDK.shared.publishableKey]).responseJSON {
+        Alamofire.request(requestUrl, method: .get, parameters: nil,encoding: JSONEncoding.default, headers: [AUTHORISATION_KEY:SwirepaySDK.shared.publishableKey]).responseJSON {
         response in
             switch response.result {
             case .success:

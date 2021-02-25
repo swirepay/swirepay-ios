@@ -8,4 +8,11 @@
 import Foundation
 
 
+// MARK: - Subscription response listeners
 
+public protocol SWSubscriptionListener {
+    
+    func didFinishSubscription(responseData:[String:Any])
+    func didFailedSubscription(error:String)
+
+}

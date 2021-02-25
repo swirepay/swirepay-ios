@@ -9,13 +9,16 @@
 import UIKit
 import Swirepay_IOS_SDK
 
-class ViewController: UIViewController, SwirePaymentListener {
-   
+class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListener {
+    
+    
+
     // MARK: - UIInterface reference
 
     @IBOutlet weak var priceTextField:UITextField!
     @IBOutlet weak var payBtn:UIButton!
     @IBOutlet weak var responseResultView:UITextView!
+    @IBOutlet weak var segmentedControl:UISegmentedControl!
 
     // MARK: - View life cycles
 
@@ -25,10 +28,19 @@ class ViewController: UIViewController, SwirePaymentListener {
         // MARK: - assign payment response listener
 
         SwirepaySDK.shared.paymentListenerDelegate = self
+        
+        SwirepaySDK.shared.subscriptionListenerDelegate = self
                 
         // MARK: - Adding done button in keyboard
 
         self.setupKeyboard()
+        
+        // MARK: -Configure segment button 
+        
+        let titleTextAttributesnormal = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let titleTextAttributesselected = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.segmentedControl.setTitleTextAttributes(titleTextAttributesnormal, for: .normal)
+        self.segmentedControl.setTitleTextAttributes(titleTextAttributesselected, for: .selected)
             
     }
 
@@ -86,7 +98,12 @@ class ViewController: UIViewController, SwirePaymentListener {
             
             let paymentList = ["CARD"]
             
-            let paymentRequestParam = ["amount":String(amount),"currencyCode":"INR","paymentMethodType":paymentList] as [String : Any]
+            let paymentRequestParam = [
+                "amount":String(amount),
+                "currencyCode":"INR",
+                "paymentMethodType":paymentList,
+                "redirectUri":"https://ios.sdk.redirect"
+                ] as [String : Any]
             
             self.initPayment(param:paymentRequestParam)
         
@@ -99,7 +116,25 @@ class ViewController: UIViewController, SwirePaymentListener {
     
     }
     
+    @IBAction func segmentBtnTabbed(sender:UISegmentedControl){
+        
+        switch sender.tag {
+        case 1:
+            self.showSubscriptionView()
+        default:
+            break
+        }
+       
+    }
+    
     // MARK: - Functions : Starting payment process
+    
+    private func showSubscriptionView(){
+         
+        let swplan = SWPlan(currencyCode:CurrencyType.INR, name: "Test Plan IOS", amount: 40000, description: "Test Plan IOS", note: "Test", billingPeriod:1, billingFrequency:BillingFrequency.MONTH)
+        
+        SwirepaySDK.shared.subscription(context: self,plan:swplan)
+    }
 
     private func initPayment(param:[String:Any]){
         self.priceTextField.text = ""
@@ -130,6 +165,16 @@ class ViewController: UIViewController, SwirePaymentListener {
     
     func onPaymentConfigurationFailed(errorMessage: String) {
         self.showAlert(message: errorMessage)
+    }
+    
+    
+    func didFinishSubscription(responseData: [String : Any]) {
+        print("didFinishSubscription",responseData)
+    }
+    
+    func didFailedSubscription(error: String) {
+        print("didFailedSubscription",error)
+
     }
     
 }

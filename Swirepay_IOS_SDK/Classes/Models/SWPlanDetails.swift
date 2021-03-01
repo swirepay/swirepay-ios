@@ -31,6 +31,10 @@ public struct SWPlanDetails {
         
     }
     
+    public init(parse:JSON){
+        
+    }
+    
     public func toDic() -> [String:Any]{
         
         var requestDic = self.plan.toDetailDic()
@@ -43,5 +47,6 @@ public struct SWPlanDetails {
 
         return requestDic
     }
+    
     
 }

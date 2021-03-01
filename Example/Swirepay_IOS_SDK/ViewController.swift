@@ -19,6 +19,10 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     @IBOutlet weak var payBtn:UIButton!
     @IBOutlet weak var responseResultView:UITextView!
     @IBOutlet weak var segmentedControl:UISegmentedControl!
+    @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var paymentLinkInputView:UIView!
+    
+    var testData = [String]()
 
     // MARK: - View life cycles
 
@@ -30,8 +34,10 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
         SwirepaySDK.shared.paymentListenerDelegate = self
         
         SwirepaySDK.shared.subscriptionListenerDelegate = self
+        
+        SwirepaySDK.shared.paymentListenerDelegate = self
                 
-        // MARK: - Adding done button in keyboard
+   /*     // MARK: - Adding done button in keyboard
 
         self.setupKeyboard()
         
@@ -40,8 +46,10 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
         let titleTextAttributesnormal = [NSAttributedString.Key.foregroundColor: UIColor.black]
         let titleTextAttributesselected = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.segmentedControl.setTitleTextAttributes(titleTextAttributesnormal, for: .normal)
-        self.segmentedControl.setTitleTextAttributes(titleTextAttributesselected, for: .selected)
-            
+        self.segmentedControl.setTitleTextAttributes(titleTextAttributesselected, for: .selected) */
+        
+        self.loadData()
+                    
     }
 
     // MARK: - Dispose of any resources that can be recreated.
@@ -50,7 +58,7 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     
     // MARK: - Functions : configure keyboard
 
-    private func setupKeyboard(){
+ /*   private func addToolBar() -> UIToolbar {
         
         let toolbar: UIToolbar = UIToolbar()
             toolbar.barStyle = .default
@@ -74,13 +82,13 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
             self.payBtn.setTitle(priceAmount, for: .normal)
         }
     
-    }
+    } */
     
     // MARK: - Functions : Price validation
     
-    func isPriceValid() -> Bool {
+    func isPriceValid(textField:UITextField) -> Bool {
         
-        guard let text = self.priceTextField.text, !text.isEmpty else {
+        guard let text = textField.text, !text.isEmpty else {
             return false
         }
         
@@ -90,9 +98,9 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     
     // MARK: - Functions : Paybutton action
 
-    @IBAction func payButtonClicked(sender:UIButton){
+    @IBAction func payButtonClicked(sender:Any){
         
-        if isPriceValid() {
+        if isPriceValid(textField: self.priceTextField) {
             
             let amount = Int(self.priceTextField.text!)! * 100
             
@@ -116,6 +124,20 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     
     }
     
+    func proceedPay(amount:String) {
+                
+        let paymentList = ["CARD"]
+        
+        let paymentRequestParam = [
+            "amount":String(amount),
+            "currencyCode":"INR",
+            "paymentMethodType":paymentList,
+            "redirectUri":"https://ios.sdk.redirect"
+            ] as [String : Any]
+        
+        self.initPayment(param:paymentRequestParam)
+    }
+    
     @IBAction func segmentBtnTabbed(sender:UISegmentedControl){
         
         switch sender.tag {
@@ -127,6 +149,55 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
        
     }
     
+
+    private func loadData(){
+        
+        self.testData.append("Pay")
+        self.testData.append("Subscription")
+        self.testData.append("Payment method")
+        self.testData.append("Merchant onboard")
+    }
+    
+    private func showPaymentLink(){
+        
+        let ac = UIAlertController(title: "Enter Amount", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        let textField = ac.textFields![0]
+        textField.keyboardType = .numberPad
+
+        let submitAction = UIAlertAction(title: "Pay", style: .default) { [unowned ac] _ in
+            let answer = ac.textFields![0]
+                    
+            ac.dismiss(animated: true, completion:{
+                if self.isPriceValid(textField: answer) {
+                    let amountVal = Int(answer.text!)! * 100
+                    self.proceedPay(amount: String(amountVal))
+                }
+            })
+
+            // do something interesting with "answer" here
+        }
+
+        ac.addAction(submitAction)
+
+        present(ac, animated: true)
+        
+        
+//        UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+//                view.isHidden = hidden
+//            })
+        
+    }
+   
+    private func showPaymentMethod(){
+        
+        SwirepaySDK.shared.createPaymentMethod(parentContext:self)
+        
+    }
+    private func showMerchantOnBoard(){
+        
+        SwirepaySDK.shared.createAccount(parentContext:self)
+    }
     // MARK: - Functions : Starting payment process
     
     private func showSubscriptionView(){
@@ -137,8 +208,10 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     }
 
     private func initPayment(param:[String:Any]){
-        self.priceTextField.text = ""
-        self.payBtn.setTitle("PAY", for: .normal)
+       /* self.priceTextField.text = ""
+        self.payBtn.setTitle("PAY", for: .normal) */
+
+        SwirepaySDK.shared.initSDK(publishKey:"sk_test_xkNDG8VLfNYEqOMVvrMho98K60NGkuyQ")
         SwirepaySDK.shared.doPayment(parentView: self, requestParam:param)
     }
     
@@ -155,6 +228,7 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     func didFinishPayment(responseData: [String:Any]) {
         print("didFinishPayment",responseData)
         self.responseResultView.text = String(format:"%@", responseData)
+        
     }
     
     func onPaymentFailed(responseData: [String : Any], errorMessage: String) {
@@ -168,14 +242,70 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     }
     
     
-    func didFinishSubscription(responseData: [String : Any]) {
-        print("didFinishSubscription",responseData)
+    func didFinishSubscription(subscription: SWSubscription) {
+        print("didFinishSubscription",subscription.status)
     }
     
     func didFailedSubscription(error: String) {
         print("didFailedSubscription",error)
 
     }
+    
+}
+
+extension ViewController : UITableViewDelegate,UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.testData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.textLabel?.text = self.testData[indexPath.row]
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.row {
+        case 0:
+            self.showPaymentLink()
+            break
+        case 1:
+            self.showSubscriptionView()
+            break
+        case 2:
+            self.showPaymentMethod()
+            break
+        case 3:
+            self.showMerchantOnBoard()
+            break
+        default:
+            break
+        }
+    }
+    
+    
+}
+
+extension ViewController : SWPaymentMethodListener {
+    
+    func didFinishPaymentMethod(responseData: [String : Any]) {
+        
+        print("didFinishPaymentMethod",responseData)
+        
+        self.responseResultView.text = responseData.description
+    }
+    
+    func didFailedPaymentMethod(error: String) {
+        print("didFailedPaymentMethod",error)
+
+    }
+    
     
 }
 

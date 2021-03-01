@@ -20,6 +20,8 @@ public class SwirepaySDK:NSObject  {
     
     public var subscriptionListenerDelegate:SWSubscriptionListener?
     
+    public var paymentMethodListenerDelegate:SWPaymentMethodListener?
+    
     public var delegate:String?
     
     private var lastPaymentResponse = [String:Any]()
@@ -167,7 +169,9 @@ public class SwirepaySDK:NSObject  {
     
     private func createSubscription(parentContext:UIViewController,planDetails:JSON,plan:SWPlan){
         
-        let requestParams = SWPlanDetails(json: planDetails, requestedPlan: plan).toDic()
+       
+        let swPlanDetails = SWPlanDetails(json: planDetails, requestedPlan: plan)
+        let requestParams = swPlanDetails.toDic()
         
         ApiManager.shared.doPostRequest(requestUrl: SUBSCRIPTION_BUTTON, params: requestParams) { (success, json, error) in
             
@@ -175,8 +179,18 @@ public class SwirepaySDK:NSObject  {
             
             if success {
                 
+
+                let swSubscription = SWSubscription(data:json,planDetails:swPlanDetails)
+                
                 let vc:SubscriptionController = SWIREPAY_STORYBOARD.instantiateViewController(withIdentifier: "SubscriptionController") as! SubscriptionController
-                vc.subscriptionUrl = "https://staging-secure.swirepay.com/subscription-button/subscriptionbutton-87c8d5040b324b668e4515d5baadbb20"
+               // vc.subscriptionUrl = link
+                vc.swSubscription = swSubscription
+                
+                vc.onSubscriptionViewdismissed =  {subscription in
+                   
+                    self.fetchSubscriptionDetails(containerView:parentContext.view,subscriptionData:subscription)
+                    
+                }
                 let nc = UINavigationController(rootViewController: vc)
                 nc.modalPresentationStyle = .fullScreen
                 parentContext.present(nc, animated: true) {
@@ -193,6 +207,101 @@ public class SwirepaySDK:NSObject  {
         }
         
         
+    }
+    
+    
+    private func fetchSubscriptionDetails(containerView:UIView,subscriptionData:SWSubscription){
+        
+        self.loader.showLoader(inView: containerView)
+        
+        let subscrioinGetUrl = SUBSCRIPTION_BUTTON + "/" + subscriptionData.gid
+        ApiManager.shared.doGetRequest(requestUrl: subscrioinGetUrl) { (sucess, json, error) in
+            Logger.shared.info(message: json)
+            self.loader.hideLoader()
+            if sucess {
+                
+                var subscription = subscriptionData
+                self.subscriptionListenerDelegate?.didFinishSubscription(subscription: subscription.parse(data:json))
+                
+            }else{
+                self.subscriptionListenerDelegate?.didFailedSubscription(error: error)
+            }
+        }
+    }
+    
+    
+    public func createPaymentMethod(parentContext:UIViewController){
+        
+        if self.paymentMethodListenerDelegate == nil {
+            Logger.shared.warning(message:"paymentMethodListener can't be nil")
+            return
+        }
+        
+        
+        let vc:PaymentMethodController = SWIREPAY_STORYBOARD.instantiateViewController(withIdentifier: "PaymentMethodController") as! PaymentMethodController
+    
+        vc.onPaymentMethodViewDismissed =  { spSessionId in
+            Logger.shared.info(message: ("fetching payment method session status " + spSessionId))
+            self.fetchPaymentMethodSessionStatus(containerView: parentContext.view,spsId: spSessionId)
+        }
+        let nc = UINavigationController(rootViewController: vc)
+        nc.modalPresentationStyle = .fullScreen
+        parentContext.present(nc, animated: true) {
+        }
+    }
+    
+    private func fetchPaymentMethodSessionStatus(containerView:UIView,spsId:String){
+        
+        self.loader.showLoader(inView: containerView)
+        
+        let paymentSetupSessionUrl = PAYMENT_METHOD_GET + "/" + spsId
+        
+        ApiManager.shared.doGetRequest(requestUrl: paymentSetupSessionUrl) { (sucess, json, error) in
+            
+            self.loader.hideLoader()
+            
+            Logger.shared.info(message: "Payment method status :: ")
+            Logger.shared.info(message: json)
+            if sucess {
+                self.paymentMethodListenerDelegate?.didFinishPaymentMethod(responseData: json.dictionaryObject!)
+                return
+            }
+            self.paymentMethodListenerDelegate?.didFailedPaymentMethod(error: error)
+           
+    
+        }
+    }
+    
+    
+    public func createAccount(parentContext:UIViewController){
+        
+        let vc:AccountConnectController = SWIREPAY_STORYBOARD.instantiateViewController(withIdentifier: "AccountConnectController") as! AccountConnectController
+    
+        vc.onAccountConnectViewdismissed =  { spAccountID in
+            Logger.shared.info(message: ("fetching account status " + spAccountID))
+            self.fetchAccountDetails(containerView: parentContext.view,spAId: spAccountID)
+        }
+        let nc = UINavigationController(rootViewController: vc)
+        nc.modalPresentationStyle = .fullScreen
+        parentContext.present(nc, animated: true) {
+        }
+    }
+    
+    private func fetchAccountDetails(containerView:UIView,spAId:String){
+        
+        self.loader.showLoader(inView: containerView)
+        
+        let accountUrl = CONNECT_ACCOUNT_GET + "/" + spAId
+        
+        ApiManager.shared.doGetRequest(requestUrl: accountUrl) { (sucess, json, error) in
+            
+            self.loader.hideLoader()
+            
+            Logger.shared.info(message: "Account status :: ")
+            Logger.shared.info(message: json)
+            
+    
+        }
     }
 
 }

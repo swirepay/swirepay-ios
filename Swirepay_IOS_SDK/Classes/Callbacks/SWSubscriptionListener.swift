@@ -12,7 +12,7 @@ import Foundation
 
 public protocol SWSubscriptionListener {
     
-    func didFinishSubscription(responseData:[String:Any])
+    func didFinishSubscription(subscription:SWSubscription)
     func didFailedSubscription(error:String)
 
 }

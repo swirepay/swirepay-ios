@@ -22,7 +22,7 @@ pod 'Swirepay_IOS_SDK'
 
 ## Author
 
-Swirepay, dinesh@swirepay.com
+Swirepay, developer@swirepay.com
 
 ## License
 

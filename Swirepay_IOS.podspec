@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'Swirepay_IOS_SDK'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of Swirepay_IOS_SDK.'
+  s.name             = 'Swirepay_IOS'
+  s.version          = '1.0'
+  s.summary          = 'The Swirepay_iOS SDK makes it quick and easy to build an excellent payment experience in your iOS app.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,7 +17,8 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = "Swirepay"
+
+  s.description      = "Quickly leverage Swirepay, to create your first customer, charge,subscription and reconcile banking and payment details with your applications or accounting systems. We provide powerful UI screens and elements that can be used out-of-the-box to collect your users payment details."
 
   s.homepage         = 'https://www.swirepay.com/'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
@@ -30,9 +31,9 @@ Pod::Spec.new do |s|
   s.swift_version = '4.0'
 
   s.source_files = 'Swirepay_IOS_SDK/Classes/**/*'
-  
+
    s.resource_bundles = {
-     'Swirepay_IOS_SDK' => ['Swirepay_IOS_SDK/Assets/*.png','Swirepay_IOS_SDK/Assets/*.Swirepay.storyboard','Swirepay_IOS_SDK/Swirepay.storyboard']
+     'Swirepay_IOS_SDK' => ['Swirepay_IOS_SDK/Assets/Swirepay.storyboard']
    }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

@@ -176,7 +176,7 @@
 		7C2CA1B9A0B88E4ABFB71B1C86B11622 /* Pods-Swirepay_IOS_SDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Swirepay_IOS_SDK_Example-umbrella.h"; sourceTree = "<group>"; };
 		837E03D0EE97CC65A4ECADF39E40C9E1 /* Swirepay_IOS_SDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Swirepay_IOS_SDK-Info.plist"; sourceTree = "<group>"; };
 		87EAE3BE5FE57DED14A26D1B40956132 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		87F779609EC3F52959256707E2A35873 /* Swirepay_IOS_SDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Swirepay_IOS_SDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		87F779609EC3F52959256707E2A35873 /* Swirepay_IOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Swirepay_IOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		884732D03E0660AFBF8D882402C86952 /* SwiftyJSON.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.debug.xcconfig; sourceTree = "<group>"; };
 		8BACB35151AA767B49216D2A232A965A /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		93DBD104E22E529CAB62CBABAD2FC544 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 			children = (
 				9AB99B42138C5C7BB440E77E311D29B8 /* LICENSE */,
 				331EE8AF73B63C028FBC188808EA4309 /* README.md */,
-				87F779609EC3F52959256707E2A35873 /* Swirepay_IOS_SDK.podspec */,
+				87F779609EC3F52959256707E2A35873 /* Swirepay_IOS.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";

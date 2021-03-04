@@ -17,7 +17,7 @@ Swirepay_IOS_SDK is available through [CocoaPods](https://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Swirepay_IOS_SDK'
+pod 'Swirepay_IOS'
 ```
 
 ## Author

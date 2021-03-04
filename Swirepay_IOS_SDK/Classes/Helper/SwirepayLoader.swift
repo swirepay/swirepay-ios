@@ -14,10 +14,16 @@ public class SwirepayLoader:UIView {
     
     var indicator:UIActivityIndicatorView!
     
+    var overLay:UIView!
+    
     // MARK: - init func
 
      init(){
         let frame : CGRect = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+        
+        overLay = UIView(frame: frame)
+        overLay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
         super.init(frame: frame)
         
         indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -39,7 +45,9 @@ public class SwirepayLoader:UIView {
 
     public  func showLoader(inView:UIView){
                 
+        inView.addSubview(overLay)
         inView.addSubview(indicator)
+        
         
         // Start Activity Indicator
         indicator.startAnimating()
@@ -50,5 +58,6 @@ public class SwirepayLoader:UIView {
         indicator.stopAnimating()
         
         indicator.removeFromSuperview()
+        overLay.removeFromSuperview()
     }
 }

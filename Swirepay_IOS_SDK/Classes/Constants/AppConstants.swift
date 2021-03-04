@@ -14,7 +14,7 @@ let BASEURL = "https://api.swirepay.com/v1/"
 let STAGGING_URL = "https://staging-backend.swirepay.com/v1/"
 let STAGGING_SECURE_URL = "https://staging-secure.swirepay.com/"
 
-let PAYMENTLINK =  "\(BASEURL)payment-link"
+let PAYMENTLINK =  "\(STAGGING_URL)payment-link"
 let PAYMENT_REDIRECT_URL = "https://ios.sdk.redirect/"
 let CREATEPLAN =  "\(STAGGING_URL)plan"
 let SUBSCRIPTION_BUTTON = "\(STAGGING_URL)subscription-button"
@@ -38,8 +38,8 @@ let AUTHORIZATION_FAILED = 401
 //API REDIRECT URL KEYS
 
 let PAYMENT_METHOD_REDIRECT_KEY = "sp-session-id"
-let SUBSCRIPTION_BUTTON_REDIRECT_KEY = "SpSubscriptionnbutton"
-let CONNECT_ACCOUNT_REDIRECT_KEY = "sp-account"
+let SUBSCRIPTION_BUTTON_REDIRECT_KEY = "sp-subscription-button"
+let CONNECT_ACCOUNT_REDIRECT_KEY = "sp-account-id"
 
 struct CurrencyCode {
     

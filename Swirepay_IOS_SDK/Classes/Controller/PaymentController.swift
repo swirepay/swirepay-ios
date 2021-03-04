@@ -10,7 +10,7 @@ import WebKit
 import SwiftyJSON
 
 
-class PaymentController: UIViewController {
+class PaymentController: BaseWebViewController {
     
     // MARK: - Variable declaration
     
@@ -29,7 +29,7 @@ class PaymentController: UIViewController {
         
         // MARK: - Creating Payment view using webview
 
-        let paymentView = WKWebView()
+    /*    let paymentView = WKWebView()
         
         self.view = paymentView
         
@@ -42,7 +42,7 @@ class PaymentController: UIViewController {
                         .constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             paymentView.rightAnchor
                         .constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor)
-                ])
+                ])  */
         
         // MARK: - parsing payment info
         
@@ -59,12 +59,14 @@ class PaymentController: UIViewController {
   
         // MARK: - Assign navigationDelegate
         
-        paymentView.navigationDelegate = self
+      //  paymentView.navigationDelegate = self
         
         // MARK: - Loading payment request
+        self.loadPage(urlString: self.paymentUrl)
+
         
-        let request = URLRequest(url: URL(string:self.paymentUrl)!)
-        paymentView.load(request)
+       // let request = URLRequest(url: URL(string:self.paymentUrl)!)
+      //  paymentView.load(request)
         
     }
     
@@ -74,14 +76,28 @@ class PaymentController: UIViewController {
         self.dismiss(animated: true, completion: nil)
         self.onPaymentViewdismissed!(self.paymentlinkData)
     }
+    
+    override func onRedirect(url: URL) {
+        
+        
+        let gid = url.queryParameters["sp-payment-link"]
+        if gid != nil {
+            Logger.shared.info(message:("GID : => " + gid!))
+            self.onDismissView()
+        }
+        
+//        if url.absoluteString == PAYMENT_REDIRECT_URL {
+//            self.onDismissView()
+//        }
 
 }
 
+}
 
 // MARK: - Extensions : WKNavigationDelegate
 
 
-extension PaymentController:WKNavigationDelegate{
+/*extension PaymentController:WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {}
     
@@ -109,4 +125,4 @@ extension PaymentController:WKNavigationDelegate{
         }
         
     }
-}
+}  */

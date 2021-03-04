@@ -35,7 +35,9 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
         
         SwirepaySDK.shared.subscriptionListenerDelegate = self
         
-        SwirepaySDK.shared.paymentListenerDelegate = self
+        SwirepaySDK.shared.paymentMethodListenerDelegate = self
+        
+        SwirepaySDK.shared.accountListenerDelegate = self
                 
    /*     // MARK: - Adding done button in keyboard
 
@@ -242,8 +244,9 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     }
     
     
-    func didFinishSubscription(subscription: SWSubscription) {
-        print("didFinishSubscription",subscription.status)
+    func didFinishSubscription(responseData: [String:Any]) {
+        
+        self.responseResultView.text = String(format:"%@", responseData)
     }
     
     func didFailedSubscription(error: String) {
@@ -292,7 +295,17 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource {
     
 }
 
-extension ViewController : SWPaymentMethodListener {
+extension ViewController : SWPaymentMethodListener,SWAccountListener {
+    
+    func didFinishConnectAccount(responseData:[String:Any]) {
+        
+        print("didFinishPaymentMethod",responseData)
+        
+        self.responseResultView.text = responseData.description
+    }
+    func didFailedConnectAccount(error:String) {
+        
+    }
     
     func didFinishPaymentMethod(responseData: [String : Any]) {
         

@@ -40,8 +40,14 @@ public class ApiManager {
 
     public func doPostRequest(requestUrl:String,params:[String:Any],completion: @escaping (Bool,JSON,String) -> Void){
         
+        guard let key = SwirepaySDK.shared.publishableKey, !key.isEmpty else {
+            print("publishKey can't be empty")
+            return
+        }
+        
         Logger.shared.info(message:requestUrl)
         Logger.shared.info(message: params)
+        Logger.shared.info(message: ("SwirepaySDK.shared.publishableKey " + SwirepaySDK.shared.publishableKey))
     
         Alamofire.request(requestUrl, method: .post, parameters: params,encoding: JSONEncoding.default, headers: [AUTHORISATION_KEY:SwirepaySDK.shared.publishableKey]).validate(statusCode: 200..<300).responseJSON {
         response in
@@ -69,6 +75,11 @@ public class ApiManager {
     public func doGetRequest(requestUrl:String,completion: @escaping (Bool,JSON,String) -> Void){
         
         Logger.shared.info(message:requestUrl)
+        
+        guard let key = SwirepaySDK.shared.publishableKey, !key.isEmpty else {
+            print("publishKey can't be empty")
+            return
+        }
         
         Alamofire.request(requestUrl, method: .get, parameters: nil,encoding: JSONEncoding.default, headers: [AUTHORISATION_KEY:SwirepaySDK.shared.publishableKey]).responseJSON {
         response in

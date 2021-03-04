@@ -9,6 +9,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Account Connect Controller-->
+        <scene sceneID="cCW-vJ-hn7">
+            <objects>
+                <viewController storyboardIdentifier="AccountConnectController" id="t6z-Iq-YaR" customClass="AccountConnectController" customModule="Swirepay_IOS_SDK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oN3-LV-Xef">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="RoB-70-Ftb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZMC-1P-qzF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1998" y="-615"/>
+        </scene>
+        <!--Payment Method Controller-->
+        <scene sceneID="E9d-Gb-VdH">
+            <objects>
+                <viewController storyboardIdentifier="PaymentMethodController" id="Xvh-d5-k80" customClass="PaymentMethodController" customModule="Swirepay_IOS_SDK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Fr-hl-7Hw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="s8E-tH-7Ob"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IeX-7E-IEh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1378" y="-546"/>
+        </scene>
         <!--Payment Controller-->
         <scene sceneID="QGM-ba-aFd">
             <objects>

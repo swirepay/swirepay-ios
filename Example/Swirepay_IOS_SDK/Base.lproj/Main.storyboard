@@ -20,75 +20,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bJY-1W-kPT">
-                                <rect key="frame" x="71" y="150" width="233" height="55"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="233" id="tGQ-X7-82D"/>
-                                    <constraint firstAttribute="height" constant="55" id="uXC-7Q-CRN"/>
-                                </constraints>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bP-Qk-gfX">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="QFQ-7Z-1Ds"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="PAY">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="payButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zxU-gY-dtl"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kUs-9I-cGw">
-                                <rect key="frame" x="16" y="229" width="343" height="364"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ah7-mb-XS8">
+                                <rect key="frame" x="0.0" y="24" width="375" height="424"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="424" id="Mk2-Cw-qtZ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="rHm-sH-BVG"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="n3B-MP-ieL"/>
+                                </connections>
+                            </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="6qO-Mt-3nW">
+                                <rect key="frame" x="0.0" y="456" width="375" height="211"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AVC-pf-pFr">
-                                <rect key="frame" x="87.5" y="40" width="200" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="Rso-47-m8G"/>
-                                    <constraint firstAttribute="height" constant="30" id="a6l-rD-oUd"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Pay"/>
-                                    <segment title="Subscription"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="selectedSegmentTintColor" systemColor="systemBlueColor"/>
-                                <connections>
-                                    <action selector="segmentBtnTabbedWithSender:" destination="vXZ-lx-hvc" eventType="valueChanged" id="ryw-Jx-uY4"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bJY-1W-kPT" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="150" id="2Fe-0N-u0b"/>
-                            <constraint firstItem="5bP-Qk-gfX" firstAttribute="top" secondItem="kUs-9I-cGw" secondAttribute="bottom" constant="24" id="3mK-48-v9w"/>
-                            <constraint firstItem="5bP-Qk-gfX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="7zS-S8-NMq"/>
-                            <constraint firstItem="AVC-pf-pFr" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="D6L-fM-Q8C"/>
-                            <constraint firstItem="kUs-9I-cGw" firstAttribute="top" secondItem="bJY-1W-kPT" secondAttribute="bottom" constant="24" id="Hfg-62-txv"/>
-                            <constraint firstAttribute="trailing" secondItem="5bP-Qk-gfX" secondAttribute="trailing" id="Ipm-0c-yWN"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5bP-Qk-gfX" secondAttribute="bottom" id="MTn-SK-Efn"/>
-                            <constraint firstItem="bJY-1W-kPT" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="QpS-6y-fRt"/>
-                            <constraint firstItem="AVC-pf-pFr" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="40" id="Y5K-WU-SF8"/>
-                            <constraint firstItem="kUs-9I-cGw" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="kou-0Y-fSk"/>
-                            <constraint firstItem="kUs-9I-cGw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="rx9-H5-vFR"/>
+                            <constraint firstAttribute="trailing" secondItem="ah7-mb-XS8" secondAttribute="trailing" id="9OQ-BR-FsJ"/>
+                            <constraint firstItem="ah7-mb-XS8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="24" id="Mn3-8v-Lbc"/>
+                            <constraint firstItem="ah7-mb-XS8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="pxU-36-dLc"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="payBtn" destination="5bP-Qk-gfX" id="edh-p1-due"/>
-                        <outlet property="priceTextField" destination="bJY-1W-kPT" id="6G0-Vl-pfi"/>
-                        <outlet property="responseResultView" destination="kUs-9I-cGw" id="yii-SC-Tvf"/>
-                        <outlet property="segmentedControl" destination="AVC-pf-pFr" id="71X-fI-6cd"/>
+                        <outlet property="responseResultView" destination="6qO-Mt-3nW" id="BXt-nW-yQM"/>
+                        <outlet property="tableView" destination="ah7-mb-XS8" id="RCX-uO-kZI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -97,14 +58,11 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

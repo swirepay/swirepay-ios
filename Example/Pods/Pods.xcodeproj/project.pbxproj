@@ -32,9 +32,17 @@
 		6092447025D4D54E005EFF27 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6092446F25D4D54E005EFF27 /* PaymentResponse.swift */; };
 		6092448A25D4F913005EFF27 /* SwirepayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6092448925D4F912005EFF27 /* SwirepayLoader.swift */; };
 		609244A025D53D76005EFF27 /* SwirepaySDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6092449F25D53D76005EFF27 /* SwirepaySDK.swift */; };
+		609A0BAF25EF4D3800AC6A47 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A0BAD25EF4D3800AC6A47 /* URL+Extension.swift */; };
+		609A0BB025EF4D3800AC6A47 /* STRING+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A0BAE25EF4D3800AC6A47 /* STRING+Extension.swift */; };
+		609A0BB725EF6BEE00AC6A47 /* SWAccountListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A0BB625EF6BEE00AC6A47 /* SWAccountListener.swift */; };
+		60B9781125ECB58D0009E2C2 /* SWSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9781025ECB58D0009E2C2 /* SWSubscription.swift */; };
 		60BE820625E4BF52009B388B /* SubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BE820525E4BF52009B388B /* SubscriptionController.swift */; };
 		60BE820F25E4C201009B388B /* SwirePaymentListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BE820E25E4C201009B388B /* SwirePaymentListener.swift */; };
 		60BE821625E4C534009B388B /* SWSubscriptionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BE821525E4C534009B388B /* SWSubscriptionListener.swift */; };
+		60E8460825ECE428000DEE9C /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E8460725ECE428000DEE9C /* BaseWebViewController.swift */; };
+		60E8460F25ECE5CF000DEE9C /* PaymentMethodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E8460E25ECE5CF000DEE9C /* PaymentMethodController.swift */; };
+		60E8461D25ED0E51000DEE9C /* SWPaymentMethodListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E8461C25ED0E50000DEE9C /* SWPaymentMethodListener.swift */; };
+		60E8462925ED1210000DEE9C /* AccountConnectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E8462825ED1210000DEE9C /* AccountConnectController.swift */; };
 		64744C911253C3E01461FAD7C935C8D7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BF55AB3F6EAEB19B8653795645C00 /* Result.swift */; };
 		7B4CE5C84161E2BFE477F42DFD634382 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BACB35151AA767B49216D2A232A965A /* SwiftyJSON.swift */; };
 		8229FBA56EA7ED4D976684D31A1CF58D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49AECC50FDF14B47FA5F02E0E873E26 /* SwiftyJSON.framework */; };
@@ -147,9 +155,17 @@
 		6092446F25D4D54E005EFF27 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
 		6092448925D4F912005EFF27 /* SwirepayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwirepayLoader.swift; sourceTree = "<group>"; };
 		6092449F25D53D76005EFF27 /* SwirepaySDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwirepaySDK.swift; path = Swirepay_IOS_SDK/Classes/SwirepaySDK.swift; sourceTree = "<group>"; };
+		609A0BAD25EF4D3800AC6A47 /* URL+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		609A0BAE25EF4D3800AC6A47 /* STRING+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STRING+Extension.swift"; sourceTree = "<group>"; };
+		609A0BB625EF6BEE00AC6A47 /* SWAccountListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SWAccountListener.swift; path = ../../../../../../../../../Users/emile/Works/swirepay/Swirepay_IOS_SDK/Swirepay_IOS_SDK/Classes/Callbacks/SWAccountListener.swift; sourceTree = SDKROOT; };
+		60B9781025ECB58D0009E2C2 /* SWSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSubscription.swift; sourceTree = "<group>"; };
 		60BE820525E4BF52009B388B /* SubscriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionController.swift; sourceTree = "<group>"; };
 		60BE820E25E4C201009B388B /* SwirePaymentListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwirePaymentListener.swift; sourceTree = "<group>"; };
 		60BE821525E4C534009B388B /* SWSubscriptionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSubscriptionListener.swift; sourceTree = "<group>"; };
+		60E8460725ECE428000DEE9C /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
+		60E8460E25ECE5CF000DEE9C /* PaymentMethodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodController.swift; sourceTree = "<group>"; };
+		60E8461C25ED0E50000DEE9C /* SWPaymentMethodListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SWPaymentMethodListener.swift; path = ../../../../../../../../../Users/emile/Works/swirepay/Swirepay_IOS_SDK/Swirepay_IOS_SDK/Classes/Callbacks/SWPaymentMethodListener.swift; sourceTree = SDKROOT; };
+		60E8462825ED1210000DEE9C /* AccountConnectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConnectController.swift; sourceTree = "<group>"; };
 		691D3D68AE12A7127AF6B12E01DD6943 /* Pods-Swirepay_IOS_SDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Swirepay_IOS_SDK_Example-dummy.m"; sourceTree = "<group>"; };
 		6ED7F97625A2B645D2C518EAC1664A37 /* Pods-Swirepay_IOS_SDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Swirepay_IOS_SDK_Tests.modulemap"; sourceTree = "<group>"; };
 		6F9822F47BD83DDDE466C826C41B256D /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = Swirepay_IOS_SDK/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
@@ -306,6 +322,7 @@
 		0AC61DC278DC8F9ED457C169FB653D7A /* Swirepay_IOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
+				609A0BAC25EF4D3800AC6A47 /* Extension */,
 				6092449F25D53D76005EFF27 /* SwirepaySDK.swift */,
 				6F9822F47BD83DDDE466C826C41B256D /* ReplaceMe.swift */,
 				6092445A25D42BD3005EFF27 /* Swirepay.storyboard */,
@@ -389,17 +406,32 @@
 			isa = PBXGroup;
 			children = (
 				6092444E25D4274E005EFF27 /* PaymentController.swift */,
+				60E8462825ED1210000DEE9C /* AccountConnectController.swift */,
+				60E8460E25ECE5CF000DEE9C /* PaymentMethodController.swift */,
+				60E8460725ECE428000DEE9C /* BaseWebViewController.swift */,
 				60BE820525E4BF52009B388B /* SubscriptionController.swift */,
 			);
 			name = Controller;
 			path = Swirepay_IOS_SDK/Classes/Controller;
 			sourceTree = "<group>";
 		};
+		609A0BAC25EF4D3800AC6A47 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				609A0BAD25EF4D3800AC6A47 /* URL+Extension.swift */,
+				609A0BAE25EF4D3800AC6A47 /* STRING+Extension.swift */,
+			);
+			name = Extension;
+			path = Swirepay_IOS_SDK/Classes/Extension;
+			sourceTree = "<group>";
+		};
 		60BE820D25E4C1DF009B388B /* Callbacks */ = {
 			isa = PBXGroup;
 			children = (
 				60BE820E25E4C201009B388B /* SwirePaymentListener.swift */,
+				609A0BB625EF6BEE00AC6A47 /* SWAccountListener.swift */,
 				60BE821525E4C534009B388B /* SWSubscriptionListener.swift */,
+				60E8461C25ED0E50000DEE9C /* SWPaymentMethodListener.swift */,
 			);
 			name = Callbacks;
 			path = Swirepay_IOS_SDK/Classes/Callbacks;
@@ -474,6 +506,7 @@
 				6092446F25D4D54E005EFF27 /* PaymentResponse.swift */,
 				6028ADC625E7C97F00D69445 /* SWPlan.swift */,
 				6028AE1825E7EF1100D69445 /* SWPlanDetails.swift */,
+				60B9781025ECB58D0009E2C2 /* SWSubscription.swift */,
 			);
 			name = Models;
 			path = Swirepay_IOS_SDK/Classes/Models;
@@ -771,22 +804,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9351E67E00A2AA09C05A6D0BF0ACB36 /* ApiManager.swift in Sources */,
+				609A0BB725EF6BEE00AC6A47 /* SWAccountListener.swift in Sources */,
 				239C4D4142183864B652AF4B625E062B /* AppConstants.swift in Sources */,
 				60BE821625E4C534009B388B /* SWSubscriptionListener.swift in Sources */,
+				60E8460F25ECE5CF000DEE9C /* PaymentMethodController.swift in Sources */,
 				DD3C021BFA2066BF48D2C1ED8F4B2D7F /* Logger.swift in Sources */,
 				49915E2E059C86963787B92D29056229 /* PaymentRequestParams.swift in Sources */,
 				60BE820F25E4C201009B388B /* SwirePaymentListener.swift in Sources */,
 				609244A025D53D76005EFF27 /* SwirepaySDK.swift in Sources */,
+				609A0BB025EF4D3800AC6A47 /* STRING+Extension.swift in Sources */,
 				6092444F25D4274E005EFF27 /* PaymentController.swift in Sources */,
 				A525A52C64150593B28A8CD3AD060142 /* ReplaceMe.swift in Sources */,
 				6028AE1925E7EF1100D69445 /* SWPlanDetails.swift in Sources */,
+				60E8462925ED1210000DEE9C /* AccountConnectController.swift in Sources */,
 				60BE820625E4BF52009B388B /* SubscriptionController.swift in Sources */,
 				6028AE0325E7D4D000D69445 /* CurrencyType.swift in Sources */,
+				60E8461D25ED0E51000DEE9C /* SWPaymentMethodListener.swift in Sources */,
 				6028ADC725E7C97F00D69445 /* SWPlan.swift in Sources */,
 				6028AE2025E7F0D800D69445 /* DateUtils.swift in Sources */,
 				DCBB38D121D019E35105EF54C29AEA8C /* Swirepay_IOS_SDK-dummy.m in Sources */,
 				6092447025D4D54E005EFF27 /* PaymentResponse.swift in Sources */,
+				60B9781125ECB58D0009E2C2 /* SWSubscription.swift in Sources */,
 				6092448A25D4F913005EFF27 /* SwirepayLoader.swift in Sources */,
+				609A0BAF25EF4D3800AC6A47 /* URL+Extension.swift in Sources */,
+				60E8460825ECE428000DEE9C /* BaseWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

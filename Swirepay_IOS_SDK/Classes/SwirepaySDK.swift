@@ -22,6 +22,8 @@ public class SwirepaySDK:NSObject  {
     
     public var paymentMethodListenerDelegate:SWPaymentMethodListener?
     
+    public var accountListenerDelegate:SWAccountListener?
+    
     public var delegate:String?
     
     private var lastPaymentResponse = [String:Any]()
@@ -220,8 +222,7 @@ public class SwirepaySDK:NSObject  {
             self.loader.hideLoader()
             if sucess {
                 
-                var subscription = subscriptionData
-                self.subscriptionListenerDelegate?.didFinishSubscription(subscription: subscription.parse(data:json))
+                self.subscriptionListenerDelegate?.didFinishSubscription(responseData: json.dictionaryObject!)
                 
             }else{
                 self.subscriptionListenerDelegate?.didFailedSubscription(error: error)
@@ -275,6 +276,11 @@ public class SwirepaySDK:NSObject  {
     
     public func createAccount(parentContext:UIViewController){
         
+        if self.accountListenerDelegate == nil {
+            Logger.shared.warning(message:"accountListenerDelegate can't be nil")
+            return
+        }
+        
         let vc:AccountConnectController = SWIREPAY_STORYBOARD.instantiateViewController(withIdentifier: "AccountConnectController") as! AccountConnectController
     
         vc.onAccountConnectViewdismissed =  { spAccountID in
@@ -299,6 +305,13 @@ public class SwirepaySDK:NSObject  {
             
             Logger.shared.info(message: "Account status :: ")
             Logger.shared.info(message: json)
+            
+            
+            if self.accountListenerDelegate != nil {
+                
+                self.accountListenerDelegate?.didFinishConnectAccount(responseData:json.dictionaryObject!)
+            }
+            
             
     
         }

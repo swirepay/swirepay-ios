@@ -2,25 +2,33 @@
 //  SubscriptionController.swift
 //  Swirepay_IOS_SDK
 //
-//  Created by Emile Milot on 23/02/21.
+//  Created by Dinesh on 23/02/21.
 //
 
 import UIKit
 import WebKit
 
 
-class SubscriptionController: UIViewController {
+class SubscriptionController: BaseWebViewController {
     
     // MARK: - Variable declaration
     
     public var subscriptionUrl:String!
+    
+    public var swSubscription:SWSubscription!
+    
+    // MARK: - Subscription status callback
+    
+    public var onSubscriptionViewdismissed  : ((SWSubscription) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        initView()
+        //initView()
+        
+        self.loadPage(urlString: self.swSubscription.link)
     }
     
     
@@ -43,8 +51,26 @@ class SubscriptionController: UIViewController {
                         .constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor)
                 ])
         
-        let request = URLRequest(url: URL(string:self.subscriptionUrl)!)
+        // MARK: - Assign navigationDelegate
+        
+        subscriptionView.navigationDelegate = self
+
+        let request = URLRequest(url: URL(string:self.swSubscription.link)!)
         subscriptionView.load(request)
+    }
+    
+    override func onRedirect(url: URL) {
+        let gid = url.queryParameters[SUBSCRIPTION_BUTTON_REDIRECT_KEY]
+        if gid != nil {
+            Logger.shared.info(message:("GID : => " + gid!))
+            self.onDismissView()
+        }
+    }
+    
+    private func onDismissView(){
+        self.dismiss(animated: true, completion: {
+            self.onSubscriptionViewdismissed!(self.swSubscription)
+        })
     }
 
 
@@ -61,7 +87,7 @@ class SubscriptionController: UIViewController {
 }
 
 
-extension SubscriptionController:WKNavigationDelegate{
+/*extension SubscriptionController:WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {}
     
@@ -73,9 +99,12 @@ extension SubscriptionController:WKNavigationDelegate{
         Logger.shared.info(message:navigationAction.request.url as Any)
          
         
-       /* if navigationAction.request.url != nil {
-            if let urlStr = navigationAction.request.url?.absoluteString{
-                if urlStr == PAYMENT_REDIRECT_URL {
+        if navigationAction.request.url != nil {
+            if let redirectUrl = navigationAction.request.url {
+                let url = URL(string: redirectUrl.absoluteString)!
+                let gid = url.queryParameters["SpSubscriptionnbutton"]
+                if gid != nil {
+                    Logger.shared.info(message:("GID : => " + gid!))
                     decisionHandler(.cancel)
                     self.onDismissView()
                 }else{
@@ -88,7 +117,7 @@ extension SubscriptionController:WKNavigationDelegate{
             
         }else{
             decisionHandler(.allow)
-        }  */
+        }
         
     } 
-}
+} */

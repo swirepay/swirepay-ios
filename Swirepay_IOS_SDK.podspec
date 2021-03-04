@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://www.swirepay.com/'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Swirepay' => 'dinseh@swirepay.com' }
+  s.author           = { 'Swirepay' => 'developer@swirepay.com' }
   s.source           = { :git => 'https://bitbucket/swirepay/Swirepay_IOS_SDK.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

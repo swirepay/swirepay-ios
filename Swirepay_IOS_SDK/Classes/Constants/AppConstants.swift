@@ -49,7 +49,7 @@ struct CurrencyCode {
 
 // MARK: - Application settings
 
-let BUNDLE_ID = "org.cocoapods.Swirepay-IOS-SDK"
+let BUNDLE_ID = "org.cocoapods.Swirepay-IOS"
 let STORYBOARD_NAME = "Swirepay"
 let SWIREPAY_BUNDLE = Bundle(identifier: BUNDLE_ID)
 let SWIREPAY_STORYBOARD = UIStoryboard(name:STORYBOARD_NAME, bundle: SWIREPAY_BUNDLE)

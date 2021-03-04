@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Swirepay_IOS'
-  s.version          = '1.0'
+  s.version          = '1.0.beta'
   s.summary          = 'The Swirepay_iOS SDK makes it quick and easy to build an excellent payment experience in your iOS app.'
 
 # This description is used to generate tags and improve search results.

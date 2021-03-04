@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Swirepay_IOS'
-  s.version          = '1.0.1'
+  s.version          = '1.0'
   s.summary          = 'The Swirepay_iOS SDK makes it quick and easy to build an excellent payment experience in your iOS app.'
 
 # This description is used to generate tags and improve search results.
@@ -30,10 +30,10 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Swirepay_IOS_SDK/Classes/**/*'
 
-   s.resource_bundles = {
-     'Swirepay_IOS_SDK' => ['Swirepay_IOS_SDK/Assets/Swirepay.storyboard']
-   }
-
+#   s.resource_bundles = {
+#     'Swirepay_IOS_SDK' => ['Swirepay_IOS_SDK/Assets/Swirepay.storyboard']
+#   }
+   s.resource = "Swirepay_IOS_SDK/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
    s.dependency 'Alamofire', '~> 4.0'

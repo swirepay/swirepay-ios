@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
 
-  s.description      = "Quickly leverage Swirepay, to create your first customer, charge,subscription and reconcile banking and payment details with your applications or accounting systems. We provide powerful UI screens and elements that can be used out-of-the-box to collect your users payment details."
+  s.description      = "Swirepay iOS SDK helps developers implement a native payment experience in their iOS application. The SDK requires minimal setup to get started and helps developers process payments under 30 seconds while being PCI compliant."
 
   s.homepage         = 'https://www.swirepay.com/'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Swirepay' => 'developer@swirepay.com' }
-  s.source           = { :git => 'https://bitbucket/swirepay/Swirepay_IOS_SDK.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/swirepay/swirepay-ios.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '11.0'

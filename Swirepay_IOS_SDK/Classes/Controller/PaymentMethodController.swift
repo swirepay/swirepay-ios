@@ -44,6 +44,17 @@ class PaymentMethodController: BaseWebViewController {
         
     }
     
+    override func viewCancelled() {
+        
+        if SwirepaySDK.shared.paymentMethodListenerDelegate != nil {
+            SwirepaySDK.shared.paymentMethodListenerDelegate!.didCanceled()
+        }
+        else {
+            print("viewCancelled")
+        }
+        
+    }
+    
     private func onDismissView(spSessionId:String){
         
         self.dismiss(animated: true, completion: {

@@ -67,6 +67,27 @@ class SubscriptionController: BaseWebViewController {
         }
     }
     
+    override func viewCancelled() {
+        
+        if SwirepaySDK.shared.subscriptionListenerDelegate != nil {
+            SwirepaySDK.shared.subscriptionListenerDelegate!.didCanceled()
+        }
+        else {
+            print("viewCancelled")
+        }
+        
+       /* self.dismiss(animated: true, completion: {
+            if SwirepaySDK.shared.subscriptionListenerDelegate != nil {
+                SwirepaySDK.shared.subscriptionListenerDelegate!.didCanceled()
+            }
+            else {
+                print("viewCancelled")
+            }
+        }) */
+        
+       
+    }
+    
     private func onDismissView(){
         self.dismiss(animated: true, completion: {
             self.onSubscriptionViewdismissed!(self.swSubscription)

@@ -213,7 +213,6 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
        /* self.priceTextField.text = ""
         self.payBtn.setTitle("PAY", for: .normal) */
 
-        SwirepaySDK.shared.initSDK(publishKey:"sk_test_xkNDG8VLfNYEqOMVvrMho98K60NGkuyQ")
         SwirepaySDK.shared.doPayment(parentView: self, requestParam:param)
     }
     
@@ -252,6 +251,12 @@ class ViewController: UIViewController, SwirePaymentListener,SWSubscriptionListe
     func didFailedSubscription(error: String) {
         print("didFailedSubscription",error)
 
+    }
+    
+    func didCanceled() {
+        print("didCanceled")
+        
+        SwirepaySDK.shared.cancel()
     }
     
 }

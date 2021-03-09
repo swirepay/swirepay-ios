@@ -14,5 +14,6 @@ public protocol SWPaymentMethodListener {
     
     func didFinishPaymentMethod(responseData:[String:Any])
     func didFailedPaymentMethod(error:String)
+    func didCanceled()
 
 }

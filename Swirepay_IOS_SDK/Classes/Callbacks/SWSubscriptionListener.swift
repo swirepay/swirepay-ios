@@ -14,5 +14,5 @@ public protocol SWSubscriptionListener {
     
     func didFinishSubscription(responseData:[String:Any])
     func didFailedSubscription(error:String)
-
+    func didCanceled()
 }

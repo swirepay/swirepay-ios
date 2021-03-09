@@ -44,6 +44,17 @@ class AccountConnectController: BaseWebViewController {
         
     }
     
+    override func viewCancelled() {
+        
+        if SwirepaySDK.shared.accountListenerDelegate != nil {
+            SwirepaySDK.shared.accountListenerDelegate!.didCanceled()
+        }
+        else {
+            print("viewCancelled")
+        }
+       
+    }
+    
     private func onDismissView(spAccountId:String){
         
         self.dismiss(animated: true, completion: {

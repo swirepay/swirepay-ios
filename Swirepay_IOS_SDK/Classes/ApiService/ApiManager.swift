@@ -42,6 +42,7 @@ public class ApiManager {
         
         guard let key = SwirepaySDK.shared.publishableKey, !key.isEmpty else {
             print("publishKey can't be empty")
+            completion(false,[:],"publishKey can't be empty")
             return
         }
         
@@ -78,6 +79,7 @@ public class ApiManager {
         
         guard let key = SwirepaySDK.shared.publishableKey, !key.isEmpty else {
             print("publishKey can't be empty")
+            completion(false,[:],"publishKey can't be empty")
             return
         }
         

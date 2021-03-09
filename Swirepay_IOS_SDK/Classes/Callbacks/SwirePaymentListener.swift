@@ -22,4 +22,6 @@ public protocol SwirePaymentListener {
     // MARK: - it will return failed response when the payment sdk is not intialized yet.
 
     func onPaymentConfigurationFailed(errorMessage:String)
+    
+    func didCanceled()
 }

@@ -13,5 +13,5 @@ public protocol SWAccountListener {
     
     func didFinishConnectAccount(responseData:[String:Any])
     func didFailedConnectAccount(error:String)
-
+    func didCanceled()
 }

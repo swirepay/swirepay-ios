@@ -26,6 +26,8 @@ public class SwirepaySDK:NSObject  {
     
     public var delegate:String?
     
+    public var baseController:UIViewController?
+    
     private var lastPaymentResponse = [String:Any]()
     
     // MARK: - Instances declaration
@@ -51,6 +53,13 @@ public class SwirepaySDK:NSObject  {
         self.publishableKey = publishKey
         Logger.shared.info(message:self.publishableKey)
         
+    }
+    
+    public func cancel(){
+        
+        if baseController != nil {
+            baseController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     // MARK: - functions
@@ -281,11 +290,25 @@ public class SwirepaySDK:NSObject  {
             return
         }
         
+        guard let key = self.publishableKey, !key.isEmpty else {
+            self.accountListenerDelegate?.didFailedConnectAccount(error: "publishKey can't be empty")
+            return
+        }
+        
         let vc:AccountConnectController = SWIREPAY_STORYBOARD.instantiateViewController(withIdentifier: "AccountConnectController") as! AccountConnectController
     
         vc.onAccountConnectViewdismissed =  { spAccountID in
             Logger.shared.info(message: ("fetching account status " + spAccountID))
-            self.fetchAccountDetails(containerView: parentContext.view,spAId: spAccountID)
+            
+            if self.accountListenerDelegate != nil {
+                
+                var results = [String:Any]()
+                results["gid"] = spAccountID
+                
+                self.accountListenerDelegate?.didFinishConnectAccount(responseData:results)
+            }
+            
+            //self.fetchAccountDetails(containerView: parentContext.view,spAId: spAccountID)
         }
         let nc = UINavigationController(rootViewController: vc)
         nc.modalPresentationStyle = .fullScreen

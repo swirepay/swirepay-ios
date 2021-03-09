@@ -77,6 +77,17 @@ class PaymentController: BaseWebViewController {
         self.onPaymentViewdismissed!(self.paymentlinkData)
     }
     
+    
+    override func viewCancelled() {
+        
+        if SwirepaySDK.shared.paymentListenerDelegate != nil {
+            SwirepaySDK.shared.paymentListenerDelegate!.didCanceled()
+        }
+        else {
+            print("viewCancelled")
+        }
+      
+    }
     override func onRedirect(url: URL) {
         
         

@@ -16,6 +16,11 @@ import WebKit
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        SwirepaySDK.shared.baseController = self
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(viewCancelled))
+
+        
         // Do any additional setup after loading the view.
     
     /*    self.view = paymentView
@@ -37,6 +42,10 @@ import WebKit
         
     }
     
+    @objc func viewCancelled(){
+            
+    }
+    
     // MARK: - Loading payment request
     func loadPage(urlString:String){
         
@@ -47,6 +56,10 @@ import WebKit
     }
     
     func onRedirect(url:URL){
+        
+    }
+    
+    func cancelled(){
         
     }
 

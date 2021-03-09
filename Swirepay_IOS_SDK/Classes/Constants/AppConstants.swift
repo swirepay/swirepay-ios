@@ -10,9 +10,20 @@ import Foundation
 // MARK: - Api Url Declaration
 
 let AUTHORISATION_KEY = "x-api-key"
+
+let DEBUG = false
+
 let BASEURL = "https://api.swirepay.com/v1/"
-let STAGGING_URL = "https://staging-backend.swirepay.com/v1/"
-let STAGGING_SECURE_URL = "https://staging-secure.swirepay.com/"
+let BASEURL_SECURE_URL = "https://secure.swirepay.com"
+
+//if debug
+/*let STAGGING_URL = "https://staging-backend.swirepay.com/v1/"
+  let STAGGING_SECURE_URL = "https://staging-secure.swirepay.com/" */
+
+//if live
+
+let STAGGING_URL = "https://api.swirepay.com/v1/"
+let STAGGING_SECURE_URL = "https://secure.swirepay.com/"
 
 let PAYMENTLINK =  "\(STAGGING_URL)payment-link"
 let PAYMENT_REDIRECT_URL = "https://ios.sdk.redirect/"

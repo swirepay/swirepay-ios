@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let api_key = "sk_test_7hneHju6knsZT29ZatWq5gIHNav41ls9" //
+        let api_key = "sk_test_xkNDG8VLfNYEqOMVvrMho98K60NGkuyQ" //
           //sk_test_7hneHju6knsZT29ZatWq5gIHNav41ls9 live
          // sk_test_xkNDG8VLfNYEqOMVvrMho98K60NGkuyQ debug
 

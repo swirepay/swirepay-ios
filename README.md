@@ -9,6 +9,17 @@
 
 Swirepay iOS SDK helps developers implement a native payment experience in their iOS application. The SDK requires minimal setup to get started and helps developers process payments under 30 seconds while being PCI compliant.
 
+## Installation
+
+Swirepay_IOS_SDK is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+
+pod 'Swirepay_IOS','1.0.1'
+
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -133,30 +144,11 @@ To cancel the payment view call the below method :
     SwirepaySDK.shared.cancel()
 
 
-
-
-
-
-
-
-    
-    
-
-
-
-
-
-
 ## Requirements
 
-## Installation
+Xcode
+swift_version  >= '4.0'
 
-Swirepay_IOS_SDK is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'Swirepay_IOS','1.0.beta'
-```
 
 ## Author
 

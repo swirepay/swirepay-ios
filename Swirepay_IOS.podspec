@@ -5,10 +5,11 @@
 # Any lines starting with a # are optional, but their use is encouraged
 # To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
 #
+#1.0.beta
 
 Pod::Spec.new do |s|
   s.name             = 'Swirepay_IOS'
-  s.version          = '1.0.beta'
+  s.version          = '1.0.1'
   s.summary          = 'The Swirepay_iOS SDK makes it quick and easy to build an excellent payment experience in your iOS app.'
 
 # This description is used to generate tags and improve search results.

@@ -13,6 +13,66 @@ Swirepay iOS SDK helps developers implement a native payment experience in their
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+AppDelegate.swift
+
+import Swirepay_IOS
+
+Add the following code to the start of your didFinishLaunchingWithOptions function:
+
+SwirepaySDK.shared.initSDK(publishKey:"api_key")
+
+Using the Swirepay_IOS_SDK:
+
+1.Pay
+
+Sample Request Parameters:
+
+    let paymentList = ["CARD"]
+
+    let paymentRequestParam = [
+    "amount":String(amount),
+    "currencyCode":"INR",
+    "paymentMethodType":paymentList,
+    "redirectUri":"https://ios.sdk.redirect"
+    ] as [String : Any]
+    
+    SwirepaySDK.shared.doPayment(parentView:UIViewController,requestParam:[String:Any])
+    
+Delegate Methods : Which is used to get the payment responses
+
+Assign delegate to current view controller
+
+SwirePaymentListener
+   
+    SwirepaySDK.shared.paymentListenerDelegate = self
+    
+    // MARK: - Payment response listeners
+
+    public protocol SwirePaymentListener {
+        
+        // MARK: - it will return the payment response after successfull payment.
+        
+        func didFinishPayment(responseData:[String:Any])
+        
+        // MARK: - it will return the payment failed response.
+
+        func onPaymentFailed(responseData:[String:Any],errorMessage:String)
+        
+        // MARK: - it will return failed response when the payment sdk is not intialized yet.
+
+        func onPaymentConfigurationFailed(errorMessage:String)
+        
+        //  MARK: ; it will return when the payment view canceled by user
+        func didCanceled()
+    }
+    
+    
+
+
+
+
+
+
 ## Requirements
 
 ## Installation

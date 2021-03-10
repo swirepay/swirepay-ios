@@ -15,17 +15,17 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 AppDelegate.swift
 
-import Swirepay_IOS
+    import Swirepay_IOS
 
 Add the following code to the start of your didFinishLaunchingWithOptions function:
 
-SwirepaySDK.shared.initSDK(publishKey:"api_key")
+    SwirepaySDK.shared.initSDK(publishKey:"api_key")
 
 Using the Swirepay_IOS_SDK:
 
 1.Pay
 
-Sample Request Parameters:
+Sample code
 
     let paymentList = ["CARD"]
 
@@ -36,11 +36,10 @@ Sample Request Parameters:
     "redirectUri":"https://ios.sdk.redirect"
     ] as [String : Any]
     
-    SwirepaySDK.shared.doPayment(parentView:UIViewController,requestParam:[String:Any])
+    SwirepaySDK.shared.doPayment(parentView:self,requestParam:paymentRequestParam)
     
-Delegate Methods : Which is used to get the payment responses
+Delegate Methods :
 
-Assign delegate to current view controller
 
 SwirePaymentListener
    
@@ -65,6 +64,81 @@ SwirePaymentListener
         //  MARK: ; it will return when the payment view canceled by user
         func didCanceled()
     }
+    
+
+2. Subscription
+
+Sample code
+
+    let swplan = SWPlan(currencyCode:CurrencyType.INR, name: "Test Plan IOS", amount: 40000, description: "Test Plan IOS", note: "Test", billingPeriod:1, billingFrequency:BillingFrequency.MONTH)
+
+    SwirepaySDK.shared.subscription(context:self,plan:swplan)
+
+Delegates:
+
+    SwirepaySDK.shared.subscriptionListenerDelegate = self
+    
+    // MARK: - Subscription response listeners
+
+    public protocol SWSubscriptionListener {
+        
+        func didFinishSubscription(responseData:[String:Any])
+        
+        func didFailedSubscription(error:String)
+        
+        func didCanceled()
+    }
+    
+3.Payment method
+
+    just call SwirepaySDK.shared.createPaymentMethod(parentContext:self)
+
+Delegates:
+
+    SwirepaySDK.shared.paymentMethodListenerDelegate = self
+
+    / MARK: - SWPaymentMethod response listeners
+
+    public protocol SWPaymentMethodListener {
+        
+        func didFinishPaymentMethod(responseData:[String:Any])
+        
+        func didFailedPaymentMethod(error:String)
+        
+        func didCanceled()
+
+    }
+    
+4. Connect Account 
+
+        just call  SwirepaySDK.shared.createAccount(parentContext:self)
+        
+Delegates:
+
+    SwirepaySDK.shared.accountListenerDelegate = self
+
+    // MARK: - SWAccountListener response listeners
+
+    public protocol SWAccountListener {
+        
+        func didFinishConnectAccount(responseData:[String:Any])
+        
+        func didFailedConnectAccount(error:String)
+        
+        func didCanceled()
+}
+
+To cancel the payment view call the below method :
+
+    SwirepaySDK.shared.cancel()
+
+
+
+
+
+
+
+
     
     
 
